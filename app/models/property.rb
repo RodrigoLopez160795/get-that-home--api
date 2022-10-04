@@ -7,8 +7,9 @@ class Property < ApplicationRecord
   enum operation_type: { rent: 0, sale: 1 }
   enum property_type: { apartment: 0, house: 1 }
   validates :about, length: { maximum: 150 }
-  # validate :picture_size_validation, :if => "photos?"
-  # validates :photos
+  # validates :photos, presence: true
+  validate :photos_validation
+
 
   # after_initialize :assign_defaults_on_new_Property, if: new_record?
 
@@ -33,6 +34,15 @@ class Property < ApplicationRecord
       throw :abort
 
     end
+  end
+
+  def photos_validation
+    if photos.attached?
+        if photos.blob.byte_size > 5000000
+          photos.purge
+          # errors[:base] << 'Too big'
+        end
+      end
   end
 
   # def picture_size_validation
