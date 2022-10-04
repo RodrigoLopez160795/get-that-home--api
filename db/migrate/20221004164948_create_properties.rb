@@ -12,7 +12,7 @@ class CreateProperties < ActiveRecord::Migration[7.0]
       t.boolean :pets
       t.text :about
       t.references :user, null: false, foreign_key: true
-      t.boolean :active
+      t.boolean :active, default: true
 
       t.timestamps
     end
