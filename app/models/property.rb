@@ -29,7 +29,7 @@ class Property < ApplicationRecord
 
   def check_user_role 
     if user.role == "homeseeker"
-      errors.add :base, :invalid, message: "The user should be a landlord to create a property"
+      errors.add :user, :invalid, message: "The user should be a landlord to create a property"
       print(errors.full_messages)
       throw :abort
 
