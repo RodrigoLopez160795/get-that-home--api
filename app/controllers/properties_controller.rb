@@ -27,6 +27,11 @@ class PropertiesController < ApplicationController
   end
 
   def update
+    if @property.update(property_params)
+      render json: @property
+    else
+      render json: @property.errors, status: :unprocessable_entity
+    end
   end
 
   def destroy
