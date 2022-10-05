@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
     resources "saved_properties", only: %i[index create show update destroy]
   resources "properties"
   resources "users", except: %i[index]
