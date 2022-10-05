@@ -1,16 +1,13 @@
 class UsersController < ApplicationController
-  def index
-  end
+  skip_before_action :require_login!, only: :create
+  def index; end
 
   def new
     @user = User.new
   end
 
   def show
-  end
-
-  def mario
-    render json: @users
+    render json: current_user
   end
 
   def create
@@ -18,24 +15,20 @@ class UsersController < ApplicationController
     if @user.save
       render json: @user, status: :created
     else
-      render json: @user.errors, status: :unprocessable_entity
+      render json: { errors: @user.errors }, status: :unprocessable_entity
     end
   end
 
-  def edit
-  end
+  def edit; end
 
-  def update
-  end
+  def update; end
 
-  def destroy
-  end
+  def destroy; end
 
   private
 
   # Use callbacks to share common setup or constraints between actions.
   def user_params
-    params.require(:user).permit(:email, :phone, :name, :password, :role)
+    params.permit(:email, :password, :phone, :name, :role)
   end
-
 end
