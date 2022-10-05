@@ -1,5 +1,6 @@
 class PropertiesController < ApplicationController
   before_action :set_property, only: %i[show edit update destroy]
+  before_action :require_login!, except: %i[index]
 
   def index
     @properties = Property.all
@@ -23,8 +24,7 @@ class PropertiesController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @property.update(property_params)
@@ -42,8 +42,8 @@ class PropertiesController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def property_params
-    params.require(:property).permit(:operation_type, :pets, :maintenance, :user_id, :bathrooms, 
-                                    :bedrooms, :property_type, :price, :photos, :about, :address, :active)
+    params.require(:property).permit(:operation_type, :pets, :maintenance, :user_id, :bathrooms,
+                                     :bedrooms, :property_type, :price, :photos, :about, :address, :active)
   end
 
   def set_property
