@@ -16,33 +16,41 @@ class PropertiesController < ApplicationController
   end
 
   def create
-    @property = Property.new(property_params)
+    @property = current_user.properties.new(property_params)
     if @property.save
       render json: @property, status: :created
     else
-      render json: @property.errors, status: :unprocessable_entity
+      render json: { errors: @property.errors }, status: :unprocessable_entity
     end
   end
 
   def edit; end
 
   def update
-    if @property.update(property_params)
-      render json: @property
+    if @property.user_id == current_user.id
+      if @property.update(property_params)
+        render json: @property
+      else
+        render json: @property.errors, status: :unprocessable_entity
+      end
     else
-      render json: @property.errors, status: :unprocessable_entity
+      render_unauthorized("Unauthorized")
     end
   end
 
   def destroy
-    @property.destroy
+    if @property.user_id == current_user.id
+      @property.destroy
+    else
+      render_unauthorized("Unauthorized")
+    end
   end
 
   private
 
   # Use callbacks to share common setup or constraints between actions.
   def property_params
-    params.require(:property).permit(:operation_type, :pets, :maintenance, :user_id, :bathrooms,
+    params.require(:property).permit(:operation_type, :pets, :maintenance, :bathrooms,
                                      :bedrooms, :property_type, :price, :photos, :about, :address, :active)
   end
 
