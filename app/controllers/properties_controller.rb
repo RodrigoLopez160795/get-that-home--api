@@ -1,9 +1,14 @@
 class PropertiesController < ApplicationController
   before_action :set_property, only: %i[show edit update destroy]
-  before_action :require_login!, except: %i[index]
+  before_action :require_login!, except: %i[index show]
 
   def index
     @properties = Property.all
+    render json: @properties
+  end
+
+  def my_properties
+    @properties = current_user.properties
     render json: @properties
   end
 
@@ -24,8 +29,6 @@ class PropertiesController < ApplicationController
     end
   end
 
-  def edit; end
-
   def update
     if @property.user_id == current_user.id
       if @property.update(property_params)
@@ -45,6 +48,8 @@ class PropertiesController < ApplicationController
       render_unauthorized("Unauthorized")
     end
   end
+
+  
 
   private
 
