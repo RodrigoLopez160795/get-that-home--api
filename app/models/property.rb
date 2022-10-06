@@ -10,13 +10,8 @@ class Property < ApplicationRecord
   # validates :photos, presence: true
   validate :photos_validation
 
-
-  # after_initialize :assign_defaults_on_new_Property, if: new_record?
-
-  # attr_accesible :pets, :maintenance
   validate :check_user_role
   after_commit :assign_defaults_on_new_property, on: %i[create update]
-  
 
   private
 
@@ -27,22 +22,20 @@ class Property < ApplicationRecord
     self.maintenance = 0
   end
 
-  def check_user_role 
-    if user.role == "homeseeker"
-      errors.add :user, :invalid, message: "The user should be a landlord to create a property"
-      print(errors.full_messages)
-      throw :abort
+  def check_user_role
+    return unless user.role == "homeseeker"
 
-    end
+    errors.add :user, :invalid, message: "The user should be a landlord to create a property"
+    Rails.logger.debug(errors.full_messages)
+    throw :abort
   end
 
   def photos_validation
-    if photos.attached?
-        if photos.blob.byte_size > 5000000
-          photos.purge
-          # errors[:base] << 'Too big'
-        end
-      end
+    # errors[:base] << 'Too big'
+    return unless photos.attached? && (photos.blob.byte_size > 5_000_000)
+
+    photos.purge
+    # errors[:base] << 'Too big'
   end
 
   # def picture_size_validation

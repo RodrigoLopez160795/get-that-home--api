@@ -1,5 +1,5 @@
 class PropertiesController < ApplicationController
-  before_action :set_property, only: %i[show edit update destroy]
+  before_action :set_property, only: %i[show update destroy]
   before_action :require_login!, except: %i[index show]
 
   def index
@@ -48,8 +48,6 @@ class PropertiesController < ApplicationController
       render_unauthorized("Unauthorized")
     end
   end
-
-  
 
   private
 

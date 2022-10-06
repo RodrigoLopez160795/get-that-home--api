@@ -19,8 +19,6 @@ class SavedPropertiesController < ApplicationController
     render json: @saved_properties
   end
 
-  def edit; end
-
   def update
     if @saved_property.user_id == current_user.id
       if @saved_property.update(saved_property_params)
