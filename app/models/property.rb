@@ -10,12 +10,20 @@ class Property < ApplicationRecord
   validates :price, numericality: { greater_than: 0 }
   # validates :photos, presence: true
   #after_commit :photos_validation
-  #validates :photos, attached: true, size: {  less_than: 5.bytes , message: 'is not given between size' }
+  validates :photos, size: {  less_than: 5.megabytes , message: 'is not given between size' }
+  # validate validate_photo_size
+
 
   validate :check_user_role
-  after_commit :assign_defaults_on_new_property, on: %i[create update]
+  validate :assign_defaults_on_new_property, on: %i[create update]
 
   private
+
+  # def photos_url
+  #   photos.each_With_object([]) do |photo, array|
+  #     array << Rails.application.routes.url_helpers.rails_blob_url(photo)
+  #   end
+  # end
 
   def assign_defaults_on_new_property
     return unless operation_type == "sale"
@@ -32,15 +40,4 @@ class Property < ApplicationRecord
     throw :abort
   end
 
-  def photos_validation
-    # errors[:base] << 'Too big'
-    return unless photos.attached? && (photos.blob.byte_size > 5_000_000)
-
-    photos.purge
-    # errors[:base] << 'Too big'
-  end
-
-  # def picture_size_validation
-  #   errors[:photos] << "should be less than 5MB" if photos.size > 5.megabytes
-  # end
 end
