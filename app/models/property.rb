@@ -9,7 +9,8 @@ class Property < ApplicationRecord
   validates :about, length: { maximum: 150 }
   validates :price, numericality: { greater_than: 0 }
   # validates :photos, presence: true
-  validate :photos_validation
+  #after_commit :photos_validation
+  #validates :photos, attached: true, size: {  less_than: 5.bytes , message: 'is not given between size' }
 
   validate :check_user_role
   after_commit :assign_defaults_on_new_property, on: %i[create update]
