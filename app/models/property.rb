@@ -10,12 +10,22 @@ class Property < ApplicationRecord
   validates :price, numericality: { greater_than: 0 }
   # validates :photos, presence: true
   #after_commit :photos_validation
-  validates :photos, size: {  less_than: 5.megabytes , message: 'is not given between size' }
+  validates :photos, size: {  less_than: 5.megabytes , message: 'is too big' }
   # validate validate_photo_size
 
 
   validate :check_user_role
   validate :assign_defaults_on_new_property, on: %i[create update]
+
+  def photos_url
+    if photos.attached?
+      photos.each_with_object([]) do |photo, array|
+        array << Rails.application.routes.url_helpers.rails_blob_url(photo)
+      end
+      # Rails.application.routes.url_helpers.rails_blob_url(photos)
+    end
+  end
+
 
   private
 
