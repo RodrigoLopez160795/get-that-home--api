@@ -8,7 +8,8 @@ class Property < ApplicationRecord
   enum property_type: { apartment: 0, house: 1 }
   validates :about, length: { maximum: 150 }
   # validates :photos, presence: true
-  validate :photos_validation
+  #after_commit :photos_validation
+  #validates :photos, attached: true, size: {  less_than: 5.bytes , message: 'is not given between size' }
 
 
   # after_initialize :assign_defaults_on_new_Property, if: new_record?
