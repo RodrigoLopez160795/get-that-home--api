@@ -36,10 +36,11 @@ HasAndBelongsToMany:
   Enabled: false
 
 Layout/LineLength:
-  Max: 120
+  Max: 150
   IgnoredPatterns: ['\s#']
 
 Metrics/BlockLength:
+  Max: 26
   Exclude:
     - config//*
     - spec//*

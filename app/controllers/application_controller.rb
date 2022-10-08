@@ -15,6 +15,10 @@ class ApplicationController < ActionController::API
     render json: { errors: error_message }, status: :unauthorized
   end
 
+  rescue_from ActiveRecord::RecordNotFound do |e|
+    render json: { message: e.message }, status: :not_found
+  end
+
   private
 
   def authenticate_token
@@ -22,5 +26,4 @@ class ApplicationController < ActionController::API
       User.where(token:).first
     end
   end
-  
 end
