@@ -13,6 +13,7 @@
 ActiveRecord::Schema[7.0].define(version: 2022_10_05_181737) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "timescaledb"
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -54,15 +55,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_05_181737) do
     t.boolean "pets"
     t.text "about"
     t.bigint "user_id", null: false
-    t.boolean "active"
+    t.boolean "active", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_properties_on_user_id"
   end
 
   create_table "saved_properties", force: :cascade do |t|
-    t.boolean "favorite"
-    t.boolean "contacted"
+    t.boolean "favorite", default: false
+    t.boolean "contacted", default: false
     t.bigint "user_id", null: false
     t.bigint "property_id", null: false
     t.datetime "created_at", null: false
