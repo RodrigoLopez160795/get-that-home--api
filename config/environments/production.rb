@@ -73,7 +73,7 @@ Rails.application.configure do
   config.i18n.fallbacks = true
 
   config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
-  Rails.application.routes.default_url_options[:host] = "https://get-that-home-api-production-6f10.up.railway.app"
+  Rails.application.routes.default_url_options[:host] = "https://get-that-home-api-production-6f10.up.railway.app/"
 
   # Don't log any deprecations.
   config.active_support.report_deprecations = false
