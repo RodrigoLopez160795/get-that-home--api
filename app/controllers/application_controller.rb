@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::API
   include ActionController::HttpAuthentication::Token::ControllerMethods
   include ActionController::Serialization
-
+  before_action :set_host_for_local_storage
   before_action :require_login!
 
   def require_login!
@@ -23,4 +23,8 @@ class ApplicationController < ActionController::API
       User.where(token:).first
     end
   end
+
+  def set_host_for_local_storage
+     ActiveStorage::Current.host = request.base_url if Rails.application.config.active_storage.service == :local
+ end
 end
