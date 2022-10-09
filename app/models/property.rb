@@ -6,6 +6,7 @@ class Property < ApplicationRecord
   # Validations
   enum operation_type: { rent: 0, sale: 1 }
   enum property_type: { apartment: 0, house: 1 }
+  validates :operation_type, :property_type, presence: true
   validates :about, length: { maximum: 150 }
   validates :price, numericality: { greater_than: 0 }, presence: true
   validates :address, presence: true
@@ -34,9 +35,8 @@ class Property < ApplicationRecord
   # end
 
   def assign_defaults_on_new_property
-    return unless operation_type == "sale"
-
-    self.pets = true
+    # return unless operation_type == "sale"
+    self.pets = operation_type == "sale"
     self.maintenance = 0
   end
 
