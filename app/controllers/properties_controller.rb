@@ -53,7 +53,7 @@ class PropertiesController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def property_params
-    params.require(:property).permit(:operation_type, :pets, :maintenance, :bathrooms,
+    params.require(:property).permit(:operation_type, :pets, :maintenance, :bathrooms, :area, 
                                      :bedrooms, :property_type, :price, :about, :address, :active, photos: [])
   end
 
