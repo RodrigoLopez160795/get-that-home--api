@@ -7,7 +7,8 @@ class Property < ApplicationRecord
   enum operation_type: { rent: 0, sale: 1 }
   enum property_type: { apartment: 0, house: 1 }
   validates :about, length: { maximum: 150 }
-  validates :price, numericality: { greater_than: 0 }
+  validates :price, numericality: { greater_than: 0 }, presence: true
+  validates :address, presence: true
   # validates :photos, presence: true
   # after_commit :photos_validation
   validates :photos, size: { less_than: 5.megabytes }
