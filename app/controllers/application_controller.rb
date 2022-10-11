@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::API
   include ActionController::HttpAuthentication::Token::ControllerMethods
   include ActionController::Serialization
-
   before_action :require_login!
 
   def require_login!
@@ -14,6 +13,10 @@ class ApplicationController < ActionController::API
 
   def render_unauthorized(error_message)
     render json: { errors: error_message }, status: :unauthorized
+  end
+
+  rescue_from ActiveRecord::RecordNotFound do |e|
+    render json: { message: e.message }, status: :not_found
   end
 
   private

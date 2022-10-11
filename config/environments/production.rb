@@ -72,6 +72,10 @@ Rails.application.configure do
   # the I18n.default_locale when a translation cannot be found).
   config.i18n.fallbacks = true
 
+  config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
+  Rails.application.routes.default_url_options[:host] = "https://get-that-home-api-production-6f10.up.railway.app"
+  config.action_controller.default_url_options = { host: "https://get-that-home-api-production-6f10.up.railway.app" }
+
   # Don't log any deprecations.
   config.active_support.report_deprecations = false
 
@@ -83,7 +87,7 @@ Rails.application.configure do
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new "app-name")
 
   if ENV["RAILS_LOG_TO_STDOUT"].present?
-    logger           = ActiveSupport::Logger.new(STDOUT)
+    logger           = ActiveSupport::Logger.new($stdout)
     logger.formatter = config.log_formatter
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end
