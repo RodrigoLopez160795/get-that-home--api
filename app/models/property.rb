@@ -8,16 +8,14 @@ class Property < ApplicationRecord
   enum property_type: { apartment: 0, house: 1 }
   validates :about, length: { maximum: 150 }
   # validates :photos, presence: true
-  #after_commit :photos_validation
-  #validates :photos, attached: true, size: {  less_than: 5.bytes , message: 'is not given between size' }
-
+  # after_commit :photos_validation
+  # validates :photos, attached: true, size: {  less_than: 5.bytes , message: 'is not given between size' }
 
   # after_initialize :assign_defaults_on_new_Property, if: new_record?
 
   # attr_accesible :pets, :maintenance
   validate :check_user_role
   after_commit :assign_defaults_on_new_property, on: %i[create update]
-  
 
   private
 
@@ -28,7 +26,7 @@ class Property < ApplicationRecord
     self.maintenance = 0
   end
 
-  def check_user_role 
+  def check_user_role
     if user.role == "homeseeker"
       errors.add :user, :invalid, message: "The user should be a landlord to create a property"
       print(errors.full_messages)
@@ -38,12 +36,11 @@ class Property < ApplicationRecord
   end
 
   def photos_validation
-    if photos.attached?
-        if photos.blob.byte_size > 5000000
-          photos.purge
-          # errors[:base] << 'Too big'
-        end
-      end
+    # errors[:base] << 'Too big'
+    if photos.attached? && (photos.blob.byte_size > 5_000_000)
+      photos.purge
+      # errors[:base] << 'Too big'
+    end
   end
 
   # def picture_size_validation
