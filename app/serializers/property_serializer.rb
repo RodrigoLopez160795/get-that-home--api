@@ -6,8 +6,8 @@ class PropertySerializer < ActiveModel::Serializer
   )
 
   def photos_url
-    images = object.images.map do |image|
-      rails_blob_path(image, only_path: true) if object.images.attached?
+    images = object.images.map do |_image|
+      rails_blob_url(@object.image) if object.images.attached?
     end
   end
 end
