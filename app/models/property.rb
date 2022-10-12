@@ -21,9 +21,16 @@ class Property < ApplicationRecord
   def photos_url
     return unless photos.attached?
 
-    photos.each_with_object([]) do |photo, array|
-      array << Rails.application.routes.url_helpers.rails_blob_url(photo)
-    end
+    # photos.each_with_object([]) do |photo, array|
+    #   array << Rails.application.routes.url_helpers.rails_blob_url(photo)
+    # end
+    photos.map(&:service_url)
+  end
+
+  def attributes
+    super.merge({
+                  image_urls: photos_url
+                })
   end
 
   private

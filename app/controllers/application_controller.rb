@@ -2,6 +2,13 @@ class ApplicationController < ActionController::API
   include ActionController::HttpAuthentication::Token::ControllerMethods
   include ActionController::Serialization
   before_action :require_login!
+  before_action :set_active_storage_current_host
+
+  def set_active_storage_current_host
+    p request
+    puts "*********************************"
+    ActiveStorage::Current.host = request.base_url
+  end
 
   def require_login!
     current_user || render_unauthorized("Access denied")
