@@ -4,4 +4,10 @@ class PropertySerializer < ActiveModel::Serializer
     :bedrooms, :property_type, :price, :about, :address, :active,
     :user_id, :photos_url
   )
+
+  def photos_url
+    images = object.images.map do |image|
+      rails_blob_path(image, only_path: true) if object.images.attached?
+    end
+  end
 end

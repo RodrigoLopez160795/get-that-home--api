@@ -18,13 +18,13 @@ class Property < ApplicationRecord
   validate :check_user_role
   validate :assign_defaults_on_new_property, on: %i[create update]
 
-  def photos_url
-    return unless photos.attached?
+  # def photos_url
+  #   return unless photos.attached?
 
-    photos.each_with_object([]) do |photo, array|
-      array << Rails.application.routes.url_helpers.rails_blob_url(photo)
-    end
-  end
+  #   photos.each_with_object([]) do |photo, array|
+  #     array << Rails.application.routes.url_helpers.rails_blob_url(photo)
+  #   end
+  # end
 
   private
 
