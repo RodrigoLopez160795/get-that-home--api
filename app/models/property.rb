@@ -18,7 +18,7 @@ class Property < ApplicationRecord
   validate :check_user_role
   validate :assign_defaults_on_new_property, on: %i[create update]
 
-  def photos_url
+  def images_urls
     return unless photos.attached?
 
     # photos.each_with_object([]) do |photo, array|
@@ -29,7 +29,7 @@ class Property < ApplicationRecord
 
   def attributes
     super.merge({
-                  images_urls: photos_url
+                  images_urls:
                 })
   end
 
