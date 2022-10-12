@@ -29,7 +29,7 @@ class Property < ApplicationRecord
 
   def attributes
     super.merge({
-                  image_urls: photos_url
+                  images_urls: photos_url
                 })
   end
 
