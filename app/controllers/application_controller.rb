@@ -7,7 +7,7 @@ class ApplicationController < ActionController::API
   def set_active_storage_current_host
     p request
     puts "*********************************"
-    ActiveStorage::Current.host = request.base_url
+    ActiveStorage::Current.url_options = request.base_url
   end
 
   def require_login!

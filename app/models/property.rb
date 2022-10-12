@@ -24,7 +24,7 @@ class Property < ApplicationRecord
     # photos.each_with_object([]) do |photo, array|
     #   array << Rails.application.routes.url_helpers.rails_blob_url(photo)
     # end
-    photos.map(&:service_url)
+    photos.map(&:url_for)
   end
 
   def attributes
