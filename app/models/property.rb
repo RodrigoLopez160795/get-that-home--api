@@ -22,7 +22,7 @@ class Property < ApplicationRecord
     return unless photos.attached?
 
     photos.each_with_object([]) do |photo, array|
-      array << Rails.application.routes.url_helpers.rails_blob_path(photo, only_path: true)
+      array << Rails.application.routes.url_helpers.rails_blob_path(photo, disposition: "attachment")
     end
     # photos.map(&:url_for)
   end
