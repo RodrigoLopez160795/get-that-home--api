@@ -3,6 +3,7 @@ class ApplicationController < ActionController::API
   include ActionController::Serialization
   before_action :require_login!
   before_action :set_active_storage_current_host
+  include Rails.application.routes.url_helpers
 
   def set_active_storage_current_host
     p request
