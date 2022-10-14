@@ -18,17 +18,7 @@ local:
 google:
   service: GCS
   project: Pysa
-  credentials:
-    "type": "service_account"
-    "project_id": "pysa-c3bb9"
-    "private_key_id": "c05d4fb0389dff1dd1e49782dcdfbe072c22c500"
-    "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQC0oRYArSUWp0qo\ncErTYPsttMzKRINhjyfuJWbriW8Ub9rxnPN0z4I1Wa8Ha7X1Lf+SxJCDfVvjn5m/\np6NK73nKwu5TqvbLX0+nNSrP/PpdsBDu4aE4KTDrCkfD5qhvuWQKMLyL5wdRbb2X\ndTJ8M/PYipla+j2Z15KTKNE+pjv1vNiqJAyS9M10Tm3tFcMCIFKg0P2wQILyIAjI\nHb6sMOLNKCf0D7Ks7RhpZKtp50S5Qdc6OGtNUY3mK1jIaXsziUGZsjUqj71e2Eyz\nTy0rqXjskTHnB7CNp3k/vU3251ir1UKCVxBCU9JVTpD87n9/1Ave/VrcRPh5gtjs\nqk91+xoTAgMBAAECggEAG621e+wMS2DeOVpftO1e//19Bh+ijEAOC9mSYFRif5y2\nTaDR05v6pWc1QWtZahUe3SQeyu9aNdKekjZDePeiT5Y4Q/zmLXrQ71vf0BhBWzrg\nFWLgvATf2JxuK9A8Dka31DHsqnl/7xPkYgGU92BUpOF0J3NCHkFg1gkCq1l4xapl\nCMfR70l1LF4jgW1Ked8mI33/lvgArk4AP15M29uImvmcHESQLaDCi6KGmbxdJ5MM\nBSAgtEPKQec6WlQyn6hSME9LwDapmYFRXrWCy87gX7TyBFSe4kDX2zAthbxu6Br8\nPdJBy6/f7eeuZZutjnQ63uNMJoO+e4iZZ778fmviFQKBgQDgUS8eABSf7n+zPyrS\n9bNH/7URutviNhuaXiGXzz4mvVebJ8XewtShicmmkvkU81VSlgXD73fkMBe4Tpjx\nyJg3xTfT2gCsZvPU6j0bxWJOeEaUlyCYKlgGByV7RdD3UDs1DPmSNNP6c3RVM+pK\nylf3XgjMxKGvnZ/ryA+flouGLwKBgQDOJD5ktkyRwqXu2+9zwoJ60IUi7qKrtqjQ\nHTcyjAcT8a2SwOBewzwvvd2SVkznVxS91x0a2/uuVUJ8m40wZE1pTkCJu0Gj31vc\nfVM8vW345XdfRWjN2oDp8prWoeVBFZq7ZJq+8XRHpK6y5n7hXE68IkZlIcyHuh7i\nYG+ZmG6VXQKBgD2CpYvxc7ZjXQsW8DRHAbFlkg5ZkgAW3DzZQRby0lUnKIW4Q08R\nV+Mv+Ga/+KNhEm2CC/Stjs+4zFhS3Se33N22K9fg+LxNwuEIllcuKgXgf2IxitOP\nEPIeNY33GBUpIAMtGqaX6+TKkgTnJoD5uWNwmrMj3D5e18J86qPVUU8rAoGANxBT\nYk+X0G+wJ0e0hLV2aRv+FECuTzPxj/Xd4rCoy1kJRmQjCu0XzKDo6MgIrtsB/VvS\nuHP+nKjFo8dhRYXlb7WpY6ETfZSSUyle7KClGZEh+97sieBOAy/80ExakrIUrO3I\nsCyLJQAGcl9DkSs5FOQK7cTDf5Xl3g5ogRzInTkCgYANwBRIKVlgDmqmmVsTb6fW\n0tA/YFV1neMoo+jzuNAqs5it+fQ9Id/bx875Z2rb0nWKVzF8b46SzEFRfoLtYJL2\nrkbqFgi04P95RRdov0Aj87HdAACbFqzRFoOcMnMvqP5yvwfUvwYPmanboeOgj+o0\nPIAqnuyDnmG8CPDveGulWA==\n-----END PRIVATE KEY-----\n"
-    "client_email": "get-that-home-api@pysa-c3bb9.iam.gserviceaccount.com"
-    "client_id": "115196161081940995887"
-    "auth_uri": "https://accounts.google.com/o/oauth2/auth"
-    "token_uri": "https://oauth2.googleapis.com/token"
-    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs"
-    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/get-that-home-api%40pysa-c3bb9.iam.gserviceaccount.com"
+  credentials: <%= Rails.application.credentials.gcskey %>
   bucket: get-that-home
   public: true
 
