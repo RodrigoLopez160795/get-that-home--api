@@ -35,7 +35,7 @@ Rails.application.configure do
 
   config.hosts << ENV["RAILS_DEVELOPMENT_HOSTS"] unless ENV["RAILS_DEVELOPMENT_HOSTS"].empty?
   # Store uploaded files on the local file system (see config/storage.yml for options).
-  config.active_storage.service = :google
+  config.active_storage.service = ENV["ACTIVE_STORAGE_SERVICE"].to_sym
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
