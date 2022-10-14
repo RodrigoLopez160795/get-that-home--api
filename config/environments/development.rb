@@ -33,7 +33,7 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
-  config.hosts << ENV["RAILS_DEVELOPMENT_HOSTS"] unless ENV["RAILS_DEVELOPMENT_HOSTS"].empty?
+  config.hosts << "179.6.98.22"
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = ENV["ACTIVE_STORAGE_SERVICE"].to_sym
 
