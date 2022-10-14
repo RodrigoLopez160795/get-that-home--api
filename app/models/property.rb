@@ -18,31 +18,9 @@ class Property < ApplicationRecord
   validate :check_user_role
   validate :assign_defaults_on_new_property, on: %i[create update]
 
-  def images_urls
-    return unless photos.attached?
-
-    photos.each_with_object([]) do |photo, array|
-      array << Rails.application.routes.url_helpers.url_for(photo)
-    end
-    # photos.map(&:url_for)
-  end
-
-  # def attributes
-  #   super.merge({
-  #                 images_urls:
-  #               })
-  # end
-
   private
 
-  # def photos_url
-  #   photos.each_With_object([]) do |photo, array|
-  #     array << Rails.application.routes.url_helpers.rails_blob_url(photo)
-  #   end
-  # end
-
   def assign_defaults_on_new_property
-    # return unless operation_type == "sale"
     self.pets = operation_type == "sale"
     self.maintenance = 0
   end

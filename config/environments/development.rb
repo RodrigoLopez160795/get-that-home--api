@@ -61,7 +61,7 @@ Rails.application.configure do
   config.assets.quiet = true
 
   config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
-  Rails.application.routes.default_url_options[:host] = "get-that-home-api-development.up.railway.app"
+  Rails.application.routes.default_url_options[:host] = ENV.fetch("URL_OPTIONS", nil)
   # Rails.application.routes.url_helpers.media_url(:host => "localhost:3000")
 
   # Raises error for missing translations.

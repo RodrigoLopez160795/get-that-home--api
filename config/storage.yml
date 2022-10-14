@@ -30,6 +30,7 @@ google:
     "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs"
     "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/get-that-home-api%40pysa-c3bb9.iam.gserviceaccount.com"
   bucket: get-that-home
+  public: true
 
 # Use bin/rails credentials:edit to set the Azure Storage secret (as azure_storage:storage_access_key)
 # microsoft:
