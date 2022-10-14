@@ -29,3 +29,7 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+#Ignre env variables
+.env.development.local
+.env.production.local
