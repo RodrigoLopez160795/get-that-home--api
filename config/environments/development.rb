@@ -33,7 +33,7 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
-  config.hosts << "get-that-home-api-development.up.railway.app"
+  config.hosts << ENV.fetch("RAILS_DELOPMENT_HOSTS", nil)
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = ENV["ACTIVE_STORAGE_SERVICE"].to_sym
 
