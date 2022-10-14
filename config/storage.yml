@@ -14,7 +14,6 @@ local:
 #   region: us-east-1
 #   bucket: your_own_bucket-<%= Rails.env %>
 
-<%= puts ENV['GCS_PRIVATE_KEY'] %>
 #Remember not to checkin your GCS keyfile to a repository
 google:
   service: GCS
