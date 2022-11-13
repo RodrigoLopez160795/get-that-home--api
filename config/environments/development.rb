@@ -33,8 +33,9 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
+  config.hosts << ENV.fetch("RAILS_DELOPMENT_HOSTS", nil)
   # Store uploaded files on the local file system (see config/storage.yml for options).
-  config.active_storage.service = :google
+  config.active_storage.service = ENV["ACTIVE_STORAGE_SERVICE"].to_sym
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
@@ -60,7 +61,7 @@ Rails.application.configure do
   config.assets.quiet = true
 
   config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
-  Rails.application.routes.default_url_options[:host] = "soyunhost"
+  Rails.application.routes.default_url_options[:host] = ENV.fetch("URL_OPTIONS", nil)
   # Rails.application.routes.url_helpers.media_url(:host => "localhost:3000")
 
   # Raises error for missing translations.
